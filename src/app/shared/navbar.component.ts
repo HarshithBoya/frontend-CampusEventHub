@@ -12,13 +12,25 @@ import { TokenService } from '../core/services/token.service';
 <header class="h-16 flex items-center justify-between px-6 lg:px-10 text-white">
 
   <!-- Brand -->
-  <h1 class="text-2xl font-extrabold tracking-tight 
-           bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 
-           bg-clip-text text-transparent 
-           drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
-  CampusHub
-</h1>
+<div class="flex items-end gap-1 select-none relative">
+  
+  <span class="text-3xl font-black tracking-tight 
+               bg-gradient-to-r from-purple-400 to-blue-400 
+               bg-clip-text text-transparent">
+    Campus
+  </span>
 
+  <span class="relative text-xl font-bold text-white 
+               translate-y-[7px] tracking-wide">
+    HUB
+
+    <span class="absolute -bottom-1 left-0 w-full h-[2px] 
+                 bg-gradient-to-r from-purple-500 to-pink-500 
+                 rounded-full">
+    </span>
+  </span>
+
+</div>
   <!-- Right Side -->
   <div class="flex items-center gap-4">
 
@@ -53,6 +65,7 @@ import { TokenService } from '../core/services/token.service';
   </div>
 </header>
 `,
+
 })
 export class NavbarComponent {
   private tokenService = inject(TokenService);

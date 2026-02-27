@@ -195,6 +195,7 @@ import { TokenService } from '../../core/services/token.service';
 
 </div>
 `,
+
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);

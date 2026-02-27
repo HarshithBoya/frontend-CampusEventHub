@@ -12,94 +12,94 @@ import { EventItem } from '../../models/event.model';
   template: `
 @let vm = (vm$ | async) ?? { loading: true, events: [] };
 
-<div class="space-y-8 pb-16 lg:pb-6">
+<div class="space-y-10 pb-20 lg:pb-8">
 
-  <!-- Page header -->
-  <div>
-    <h1 class="text-3xl font-bold text-white tracking-tight">
+  <!-- Header -->
+  <div class="space-y-2">
+    <h1 class="text-3xl font-semibold text-white tracking-tight">
       Events
     </h1>
-    <p class="text-sm text-white/60 mt-1">
+    <p class="text-sm text-white/50">
       Discover and join upcoming events.
     </p>
   </div>
 
-  <!-- Loading state -->
+  <!-- Loading -->
   @if (vm.loading) {
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       @for (i of skeleton; track $index) {
-        <div
-          class="h-44 rounded-2xl bg-white/10 backdrop-blur-xl 
-                 border border-white/10 animate-pulse"
-        ></div>
+        <div class="h-44 rounded-2xl bg-white/[0.04] border border-white/10 animate-pulse"></div>
       }
     </div>
   }
 
-  <!-- Empty state -->
+  <!-- Empty -->
   @if (!vm.loading && vm.events.length === 0) {
-    <div
-      class="rounded-3xl border border-white/20 
-             bg-white/5 backdrop-blur-xl
-             p-12 text-center text-white"
-    >
-      <div class="space-y-3">
-        <p class="text-lg font-semibold">
-          No events yet
-        </p>
-        <p class="text-sm text-white/60">
-          New events will appear here once they are created.
-        </p>
-      </div>
+    <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-12 text-center">
+      <p class="text-lg font-medium text-white">No events yet</p>
+      <p class="text-sm text-white/50 mt-2">
+        New events will appear here once they are created.
+      </p>
     </div>
   }
 
-  <!-- Events grid -->
+  <!-- Grid -->
   @if (!vm.loading && vm.events.length > 0) {
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       @for (event of vm.events; track event.id) {
+
         <div
-          class="group rounded-3xl 
-                 bg-white/10 backdrop-blur-xl
-                 border border-white/15
-                 p-6 
+          class="group rounded-2xl
+                 bg-white/[0.05]
+                 border border-white/10
+                 p-6
                  transition-all duration-300
-                 hover:-translate-y-1
-                 hover:bg-white/15
-                 hover:shadow-[0_0_30px_rgba(124,58,237,0.3)]"
+                 hover:border-white/20
+                 hover:bg-white/[0.07]"
         >
 
-          <!-- scope + category -->
-          <div class="mb-4 flex items-center justify-between text-xs">
-            <span class="px-3 py-1 rounded-full 
-                         bg-purple-500/20 text-purple-300">
+          <!-- Top Row -->
+          <div class="flex items-center justify-between text-xs mb-4">
+
+            <span class="px-2.5 py-1 rounded-md 
+                         bg-purple-500/15 
+                         text-purple-300 
+                         font-medium">
               {{ event.scope }}
             </span>
 
-            <span class="text-white/50">
+            <span class="text-white/40 uppercase tracking-wide">
               {{ event.category }}
             </span>
+
           </div>
 
-          <!-- title -->
-          <h3 class="text-white font-semibold text-lg leading-tight">
+          <!-- Title -->
+          <h3 class="text-white font-medium text-lg leading-snug">
             {{ event.title }}
           </h3>
 
-          <!-- description -->
-          <p class="mt-2 line-clamp-2 text-sm text-white/60">
+          <!-- Description -->
+          <p class="mt-2 text-sm text-white/50 line-clamp-2">
             {{ event.description }}
           </p>
 
-          <!-- footer -->
-          <div
-            class="mt-6 flex items-center justify-between text-xs text-white/50"
-          >
-            <span>{{ event.college?.name }}</span>
-            <span>{{ event.startDate | date: 'mediumDate' }}</span>
+          <!-- Footer -->
+          <div class="mt-6 pt-4 border-t border-white/10
+                      flex items-center justify-between text-xs text-white/40">
+
+            <span class="truncate max-w-[60%]">
+              {{ event.college?.name }}
+            </span>
+
+            <span>
+              {{ event.startDate | date: 'mediumDate' }}
+            </span>
+
           </div>
 
         </div>
+
       }
     </div>
   }
