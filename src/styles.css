@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+
+/* ------------------------------
+   Design tokens (premium base)
+--------------------------------*/
+
+:root {
+  color-scheme: light dark;
+
+  /* radius scale */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+
+  /* shadow tokens */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ------------------------------
+   Base reset improvements
+--------------------------------*/
+
+html,
+body {
+  height: 100%;
+  background-color: white ;
+  /* text-neutral-900 antialiased; */
+  color:black;
+
+}
+
+
+
+/* Dark mode base */
+
+.dark body {
+  @apply bg-neutral-950 text-gray-900;
+}
+
+/* Smooth theme transition */
+
+* {
+  @apply transition-colors duration-300;
+}
